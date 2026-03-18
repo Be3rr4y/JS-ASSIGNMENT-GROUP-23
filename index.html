@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Ecommerce Store</title>
+  <!--linking the external css file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+
+    <!--the heading-->
+    <h1>
+      The Makerere tech store
+    </h1>
+
+    
+
+    <nav>
+
+      <a href="index.html">Home</a>
+            <!-- Compulsory Feature 5: Cart Counter -->
+            <a href="cart.html" id="cart-link">Cart (<span id="cart-count">0</span>)</a>
+            <a href="checkout.html">Checkout</a>
+
+    </nav>
+    
+  </header>
+
+    <section id="ui-controls">
+        <!-- Compulsory Feature 6: Product Search Bar -->
+        <input type="text" id="search-bar" placeholder="Search products by name...">
+
+        <!-- Compulsory Feature 7: Product Filtering by Category -->
+        <select id="category-filter">
+            <option value="all">All Categories</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Books">Books</option>
+        </select>
+    </section>
+
+    <main>
+        <!-- Compulsory Feature 1: Dynamic Product Display Container -->
+        <!-- JavaScript will use appendChild() to put cards here -->
+        <div id="product-list" class="product-grid"></div>
+    </main>
+
+    <!-- Link to JavaScript at the bottom for DOM performance -->
+
+
+<script src="script.js"></script>
+</body>
+</html>

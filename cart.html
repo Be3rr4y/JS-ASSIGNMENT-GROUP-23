@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Makerere Tech Store</title>
+    <!-- Link to the shared CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Your Shopping Cart</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <!-- Compulsory Feature 5: Cart Counter -->
+            <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+            <a href="checkout.html">Checkout</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Compulsory Feature 3 & 4 Container -->
+        <!-- JavaScript will dynamically inject cart items here -->
+        <div id="cart-items-container"></div>
+
+        <section id="cart-summary">
+            <h3>Order Summary</h3>
+            <!-- Compulsory Feature: View total cost -->
+            <p>Total Cost: <span id="total-price">$0.00</span></p>
+            <button id="checkout-btn" onclick="location.href='checkout.html'">Proceed to Checkout</button>
+        </section>
+    </main>
+
+    <!-- Link to the shared JavaScript file -->
+    <script src="script.js"></script>
+    <script>
+        // Specific call for the Cart Page to render items on load
+        window.onload = () => {
+            if (typeof displayCart === "function") {
+                displayCart();
+            }
+        };
+    </script>
+</body>
+</html>
