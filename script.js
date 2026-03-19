@@ -158,6 +158,30 @@ function updateCartCounter() {
         counter.innerText = total; // Updating cart indicator dynamically [6]
     }
 }
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const paymentOptions = document.getElementsByName("payment");
+  const mobileMoneyDiv = document.getElementById("mobileMoneyDetails");
+  const cardDiv = document.getElementById("cardDetails");
+
+  paymentOptions.forEach(option => {
+      option.addEventListener("change", function () {
+          if (this.value === "mobile_money") {
+              mobileMoneyDiv.style.display = "block";
+              cardDiv.style.display = "none";
+          } else if (this.value === "card") {
+              mobileMoneyDiv.style.display = "none";
+              cardDiv.style.display = "block";
+          } else {
+              mobileMoneyDiv.style.display = "none";
+              cardDiv.style.display = "none";
+          }
+      });
+  });
+
+});
+</script>
 
 /**
  * CHECKOUT VALIDATION with try...catch (Compulsory Feature 9 & 10) [3]
