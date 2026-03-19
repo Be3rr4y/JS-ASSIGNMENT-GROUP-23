@@ -6,12 +6,12 @@
 
 // 1. DATA: Array of objects for products (Compulsory Feature 1) [2]
 const products = [
-    { id: 1, name: "Pro Laptop", price: 1200, category: "Electronics", image: "images/electronics/laptop.jpeg" },
-    { id: 2, name: "Smart Phone", price: 800, category: "Electronics", image: "images/electronics/iPhone 16 pro max.jpeg" },
-    { id: 3, name: "Running Shoes", price: 120, category: "Fashion", image: "images/shoes/Love, adidas.jpeg" },
-    { id: 4, name: "Leather Jacket", price: 250, category: "Fashion", image: "images/jacket.jpg" },
-    { id: 5, name: "JS Guide Book", price: 50, category: "Books", image: "images/book.jpg" },
-    { id: 6, name: "Wireless Headphones", price: 150, category: "Electronics", image: "images/headphones.jpg" }
+    { id: 1, name: "Pro Laptop", price: 2000000, category: "Electronics", image: "images/electronics/laptop.jpeg" },
+    { id: 2, name: "Smart Phone", price: 1800000, category: "Electronics", image: "images/electronics/iPhone 16 pro max.jpeg" },
+    { id: 3, name: "Running Shoes", price: 120000, category: "Fashion", image: "images/shoes/Love, adidas.jpeg" },
+    { id: 4, name: "Leather Jacket", price: 80000, category: "Fashion", image: "images/jacket.jpg" },
+    { id: 5, name: "JS Guide Book", price: 30000, category: "Books", image: "images/book.jpg" },
+    { id: 6, name: "Wireless Headphones", price: 150000, category: "Electronics", image: "images/headphones.jpg" }
 ];
 
 // 2. LOCAL STORAGE: Initialize cart (Compulsory Feature 8) [4]
@@ -49,7 +49,7 @@ function displayProducts(items) {
             <img src="${product.image}" alt="${product.name}">
             <h3>${product.name}</h3>
             <p>Category: ${product.category}</p>
-            <p class="price">$${product.price}</p>
+            <p class="price">UGX ${product.price.toLocaleString()}</p>
             <button class="add-btn" data-id="${product.id}">Add to Cart</button>
         `;
 
@@ -107,7 +107,7 @@ function displayCart() {
             <img src="${item.image}" alt="${item.name}">
             <div>
                 <h4>${item.name}</h4>
-                <p>$${item.price}</p>
+                <p>UGX ${item.price.toLocaleString()}</p>
             </div>
             <div class="quantity-controls">
                 <button onclick="changeQuantity(${item.id}, -1)">-</button>
@@ -120,7 +120,7 @@ function displayCart() {
     });
 
     // Updating total price dynamically [6]
-    totalPriceElement.innerText = `$${total.toFixed(2)}`;
+    totalPriceElement.innerText = `UGX ${total.toLocaleString()}`;
 }
 
 window.changeQuantity = function(id, delta) {
