@@ -158,7 +158,7 @@ function updateCartCounter() {
         counter.innerText = total; // Updating cart indicator dynamically [6]
     }
 }
-<script>
+
 document.addEventListener("DOMContentLoaded", function () {
 
   const paymentOptions = document.getElementsByName("payment");
@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-</script>
+
 
 /**
  * CHECKOUT VALIDATION with try...catch (Compulsory Feature 9 & 10) [3]
