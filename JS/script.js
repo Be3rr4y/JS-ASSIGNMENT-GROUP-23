@@ -4,7 +4,7 @@
  * Demonstrates: DOM manipulation, Event Handling, LocalStorage, and Error Handling.
  */
 
-// 1. DATA: Array of objects for products (Compulsory Feature 1) [2]
+// 1. DATA: Array of objects for products (Compulsory Feature 1) 
 const products = [
     { id: 1, name: "Pro Laptop", price: 2000000, category: "Electronics", image: "images/electronics/laptop.jpeg" },
     { id: 2, name: "Smart Phone", price: 1800000, category: "Electronics", image: "images/electronics/iPhone 16 pro max.jpeg" },
@@ -14,7 +14,7 @@ const products = [
     { id: 6, name: "Wireless Headphones", price: 150000, category: "Electronics", image: "images/headphones.jpg" }
 ];
 
-// 2. LOCAL STORAGE: Initialize cart (Compulsory Feature 8) [4]
+// 2. LOCAL STORAGE: Initialize cart (Compulsory Feature 8) 
 let cart = [];
 try {
     // Attempting to retrieve data from localStorage [3]
@@ -50,19 +50,11 @@ function displayProducts(items) {
             <h3>${product.name}</h3>
             <p>Category: ${product.category}</p>
             <p class="price">UGX ${product.price.toLocaleString()}</p>
-            <button class="add-btn" data-id="${product.id}">Add to Cart</button>
+            <button onclick= "addToCart(${product.id})">Add to Cart</button>
         `;
 
         // Using appendChild() to add card to the DOM [2]
         productList.appendChild(card);
-    });
-
-    // Add event listeners to "Add to Cart" buttons
-    document.querySelectorAll('.add-btn').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const id = parseInt(e.target.getAttribute('data-id'));
-            addToCart(id);
-        });
     });
 }
 
@@ -89,7 +81,7 @@ function addToCart(productId) {
 // ---------------------------------------------------------
 
 /**
- * Function: Displays cart items and total cost (Compulsory Feature 3, 4, 7) [6]
+ * Function: Displays cart items and total cost (Compulsory Feature 3, 4, 5) 
  */
 function displayCart() {
     const cartContainer = document.getElementById('cart-items-container');
