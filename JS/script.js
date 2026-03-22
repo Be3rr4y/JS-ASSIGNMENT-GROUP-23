@@ -149,7 +149,7 @@ window.removeFromCart = function(id) {
 
 //function : Displays total on checkout page
 function displayCheckoutTotal(){
-    const checkoutTotalElement= document.getElementById('checkout-total-display'));
+    const checkoutTotalElement= document.getElementById('checkout-total-display');
 if (!checkoutTotalElement) return;
 
     const total = car.reduce((sum,item) => sum + (item.price *item.quantity),0);
@@ -178,6 +178,7 @@ window.validateCheckout = function() {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
+        const phone2 = document.getElementById('phone2').value;
         const address = document.getElementById('address').value;
 
         // Check if cart is empty [3]
@@ -190,12 +191,22 @@ window.validateCheckout = function() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) throw new Error("Please enter a valid email address.");
 
-        // Phone validation (Simple check for digits) [3]
-        if (phone.length < 10 || isNaN(phone)) throw new Error("Please enter a valid phone number.");
+        // 4. NEW: Phone Number Validation (Only numbers, no symbols, length 10) [1]
+        // The regex /^\d{10}$/ ensures exactly 10 digits and nothing else.
+        const phoneRegex = /^\d{10}$/; 
+        if (!phoneRegex.test(phone)) {
+            throw new Error("Phone number must be exactly 10 digits and contain only numbers (no characters or symbols).");
+        }
 
+//validating enter your mobile money number
+        const phone2Regex = /^\d{10}$/; 
+        if (!phoneRegex.test(phone2)) {
+            throw new Error("Phone number must be exactly 10 digits and contain only numbers (no characters or symbols).");
+        }
+        
         alert("Order placed successfully!");
         cart = [];// clear cart on success
-        saveCart();
+        localStorage.setItem('cartItems', JSON.stringify(cart)); // Update Local Storage [4]
         window.location.href = "index.html";
 
     } catch (error) {
