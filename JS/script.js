@@ -95,8 +95,10 @@ function displayCart() {
         total += item.price * item.quantity;
         const itemRow = document.createElement('div');
         itemRow.className = "cart-item";
+
+        //inner html used to create quantity control and remove buttons
         itemRow.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
+            <img src="${item.image}" alt="${item.name}" style="width:50px">
             <div>
                 <h4>${item.name}</h4>
                 <p>UGX ${item.price.toLocaleString()}</p>
@@ -112,8 +114,12 @@ function displayCart() {
     });
 
     // Updating total price dynamically [6]
+    if (totalPriceElement){
     totalPriceElement.innerText = `UGX ${total.toLocaleString()}`;
+    }
 }
+
+//Function Quantity control
 
 window.changeQuantity = function(id, delta) {
     try {
@@ -127,6 +133,7 @@ window.changeQuantity = function(id, delta) {
         alert(err.message);
     }
 };
+//Function remove from cart(feauture3)
 
 window.removeFromCart = function(id) {
     cart = cart.filter(item => item.id !== id);
@@ -139,40 +146,55 @@ window.removeFromCart = function(id) {
 // CHECKOUT & SHARED LOGIC
 // ---------------------------------------------------------
 
+
+//function : Displays total on checkout page
+function displayCheckoutTotal(){
+    const checkoutTotalElement= document.getElementById('checkout-total-display'));
+if (!checkoutTotalElement) return;
+
+    const total = car.reduce((sum,item) => sum + (item.price *item.quantity),0);
+    checkoutTotalElement.innerText =`UGX ${total.toLocaleString()}`;
+}
+
 function saveCart() {
-    localStorage.setItem('cartItems', JSON.stringify(cart));
+    localStorage.setItem('cartItems', JSON.stringify(cart));//loccal Storage
 }
 
 function updateCartCounter() {
     const counter = document.getElementById('cart-count');
     if (counter) {
-        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-        counter.innerText = total; // Updating cart indicator dynamically [6]
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        counter.innerText = totalItems; // Updating cart indicator dynamically [6]
     }
 }
-
+//payment logic
+//DOM .addeventlistener
 document.addEventListener("DOMContentLoaded", function () {
+    displayProducts(products);
+    displayCart();
+    updateCartCounter();
+    displayCheckoutTotal();
 
   const paymentOptions = document.getElementsByName("payment");
   const mobileMoneyDiv = document.getElementById("mobileMoneyDetails");
   const cardDiv = document.getElementById("cardDetails");
-
+if( paymentOptions.length > 0){
   paymentOptions.forEach(option => {
       option.addEventListener("change", function () {
           if (this.value === "mobile_money") {
-              mobileMoneyDiv.style.display = "block";
-              cardDiv.style.display = "none";
+           if(mobileMoneyDiv) mobileMoneyDiv.style.display = "block";
+                if( cardDiv) cardDiv.style.display = "none";
           } else if (this.value === "card") {
-              mobileMoneyDiv.style.display = "none";
-              cardDiv.style.display = "block";
+          if(mobileMoneyDiv) mobileMoneyDiv.style.display = "none";
+          if( cardDiv)  cardDiv.style.display = "block";
           } else {
-              mobileMoneyDiv.style.display = "none";
-              cardDiv.style.display = "none";
+         if(mobileMoneyDiv) mobileMoneyDiv.style.display = "none";
+          if( cardDiv) cardDiv.style.display = "none";
           }
       });
-  });
 
-});
+
+
 
 
 /**
