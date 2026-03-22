@@ -200,8 +200,12 @@ window.validateCheckout = function() {
 
     } catch (error) {
         // Handle possible errors using try...catch [3]
-if(errorDiv ) errorDiv.innerText = error.message;
+if(errorDiv ) {
+    
+    errorDiv.style.d.splay ="block";
+    errorDiv.innerText = error.message;
     }
+ }
 };
 
 // SEARCH AND FILTER (Compulsory Feature 6 & 7) [4]
@@ -213,8 +217,10 @@ if (document.getElementById('search-bar')) {
     });
 }
 
-if (document.getElementById('category-filter')) {
-    document.getElementById('category-filter').addEventListener('change', (e) => {
+
+//search and filter
+if (document.getElementById('search-bar')) {
+    document.getElementById('search-bar').addEventListener('change', (e) => {
         const term = e.target.value.toLowerCase();
         const filtered = products.filter(p => p.name.toLowerCase().includes(term));
         displayProducts(filtered); // Category filtering [4]
