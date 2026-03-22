@@ -216,7 +216,7 @@ if (document.getElementById('search-bar')) {
 if (document.getElementById('category-filter')) {
     document.getElementById('category-filter').addEventListener('change', (e) => {
         const term = e.target.value.toLowerCase();
-        const filtered = products.filter(p => p.name.toLowerCase().includes(term)));
+        const filtered = products.filter(p => p.name.toLowerCase().includes(term));
         displayProducts(filtered); // Category filtering [4]
     });
 }
@@ -227,11 +227,10 @@ document.addEventListener('DOMContentLoaded', () => {
     displayProducts(products);
     displayCart();
     updateCartCounter();
+    displayCheckoutTotal();
 
 
 //payment logic
-
-
   const paymentOptions = document.getElementsByName("payment");
   const mobileMoneyDiv = document.getElementById("mobileMoneyDetails");
   const cardDiv = document.getElementById("cardDetails");
