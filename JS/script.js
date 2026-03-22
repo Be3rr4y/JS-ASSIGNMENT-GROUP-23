@@ -167,13 +167,70 @@ function updateCartCounter() {
         counter.innerText = totalItems; // Updating cart indicator dynamically [6]
     }
 }
-//payment logic
+/**
+ * CHECKOUT VALIDATION with try...catch (Compulsory Feature 9 & 10) [3]
+ */
+window.validateCheckout = function() {
+    const errorDiv = document.getElementById('error-message');
+    errorDiv.innerText = "";
+
+    try {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+
+        // Check if cart is empty [3]
+        if (cart.length === 0) throw new Error("Your cart is empty. Add products before checking out!");
+
+        // Check all fields filled [3]
+        if (!name || !email || !phone || !address) throw new Error("All fields must be filled.");
+
+        // Email validation (Regex) [3]
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) throw new Error("Please enter a valid email address.");
+
+        // Phone validation (Simple check for digits) [3]
+        if (phone.length < 10 || isNaN(phone)) throw new Error("Please enter a valid phone number.");
+
+        alert("Order placed successfully!");
+        cart = [];// clear cart on success
+        saveCart();
+        window.location.href = "index.html";
+
+    } catch (error) {
+        // Handle possible errors using try...catch [3]
+if(errorDiv ) errorDiv.innerText = error.message;
+    }
+};
+
+// SEARCH AND FILTER (Compulsory Feature 6 & 7) [4]
+if (document.getElementById('search-bar')) {
+    document.getElementById('search-bar').addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        const filtered = products.filter(p => p.name.toLowerCase().includes(term));
+        displayProducts(filtered); // Search filtering [4]
+    });
+}
+
+if (document.getElementById('category-filter')) {
+    document.getElementById('category-filter').addEventListener('change', (e) => {
+        const term = e.target.value.toLowerCase();
+        const filtered = products.filter(p => p.name.toLowerCase().includes(term)));
+        displayProducts(filtered); // Category filtering [4]
+    });
+}
+
+// INITIALIZE PAGE
 //DOM .addeventlistener
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', () => {
     displayProducts(products);
     displayCart();
     updateCartCounter();
-    displayCheckoutTotal();
+
+
+//payment logic
+
 
   const paymentOptions = document.getElementsByName("payment");
   const mobileMoneyDiv = document.getElementById("mobileMoneyDetails");
@@ -194,68 +251,4 @@ if( paymentOptions.length > 0){
       });
   });
 }
-});
-
-
-
-
-/**
- * CHECKOUT VALIDATION with try...catch (Compulsory Feature 9 & 10) [3]
- */
-window.validateCheckout = function() {
-    const errorDiv = document.getElementById('error-message');
-    errorDiv.innerText = "";
-
-    try {
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const address = document.getElementById('address').value;
-
-        // Check if cart is empty [3]
-        if (cart.length === 0) throw new Error("Your cart is empty. Add products before checking out.");
-
-        // Check all fields filled [3]
-        if (!name || !email || !phone || !address) throw new Error("All fields are mandatory.");
-
-        // Email validation (Regex) [3]
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) throw new Error("Please enter a valid email address.");
-
-        // Phone validation (Simple check for digits) [3]
-        if (phone.length < 10 || isNaN(phone)) throw new Error("Please enter a valid phone number.");
-
-        alert("Order placed successfully!");
-        cart = [];
-        saveCart();
-        window.location.href = "index.html";
-
-    } catch (error) {
-        // Handle possible errors using try...catch [3]
-        errorDiv.innerText = error.message;
-    }
-};
-
-// SEARCH AND FILTER (Compulsory Feature 6 & 7) [4]
-if (document.getElementById('search-bar')) {
-    document.getElementById('search-bar').addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const filtered = products.filter(p => p.name.toLowerCase().includes(term));
-        displayProducts(filtered); // Search filtering [4]
-    });
-}
-
-if (document.getElementById('category-filter')) {
-    document.getElementById('category-filter').addEventListener('change', (e) => {
-        const cat = e.target.value;
-        const filtered = cat === "all" ? products : products.filter(p => p.category === cat);
-        displayProducts(filtered); // Category filtering [4]
-    });
-}
-
-// INITIALIZE PAGE
-document.addEventListener('DOMContentLoaded', () => {
-    displayProducts(products);
-    displayCart();
-    updateCartCounter();
 });
