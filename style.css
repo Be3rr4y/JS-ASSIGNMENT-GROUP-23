@@ -70,7 +70,6 @@ header a {
     border-radius: 5px;
     margin-bottom: 10px;
 }
-/*Added by Ssemanda Rashid */
 
 .product-card h3 {
     font-size: 1.2rem;
@@ -187,72 +186,59 @@ header a {
     background-color: #218838;
 }
 
-
-/* Checkout Page Layout */
+/* Checkout Form Layout */
 #checkout-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 20px;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#order-summary-box, #form-section {
+    max-width: 600px;
+    margin: 20px auto;
     background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    flex: 1;
-    min-width: 300px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Form Styling */
 .form-group {
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
 }
 
-.form-group label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
 .form-group input, .form-group textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 1rem;
 }
 
-/* Place Order Button */
+/* Payment Toggle Styling */
+.payment-details {
+    display: none; /* Crucial: Hides sections until JS triggers them */
+    background: #f0f0f0;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border-left: 5px solid #007bff;
+}
+
+.payment-options {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 15px;
+}
+
+/* Compulsory Error Message Styling [1] */
+#error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+    min-height: 1.2em;
+}
+
 #place-order-btn {
     width: 100%;
-    background-color: #007bff;
+    background: #28a745;
     color: white;
-    border: none;
     padding: 15px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 5px;
+    border: none;
     cursor: pointer;
-    transition: background 0.3s;
-}
-
-#place-order-btn:hover {
-    background-color: #0056b3;
-}
-
-/* Validation Feedback Styles */
-.error-border {
-    border: 2px solid red !important;
-}
-
-.success-message {
-    color: green;
-    font-weight: bold;
-    text-align: center;
-    padding: 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
 }
