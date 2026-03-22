@@ -192,7 +192,9 @@ if( paymentOptions.length > 0){
           if( cardDiv) cardDiv.style.display = "none";
           }
       });
-
+  });
+}
+});
 
 
 
