@@ -10,7 +10,7 @@ const products = [
     { id: 2, name: "Smart Phone", price: 1800000, category: "Electronics", image: "images/electronics/iPhone 16 pro max.jpeg" },
     { id: 3, name: "Running Shoes", price: 120000, category: "Fashion", image: "images/shoes/Love, adidas.jpeg" },
     { id: 4, name: "Leather Jacket", price: 80000, category: "Fashion", image: "images/jacket.jpg" },
-    { id: 5, name: "MOTIVATIONAL Book", price: 30000, category: "Books", image: "images/ATOMIC HABITS.jpeg" },
+    { id: 5, name: "MOTIVATIONAL Book", price: 30000, category: "Books", image: "images/books/ATOMIC HABITS.jpeg" },
     { id: 6, name: "Wireless Headphones", price: 150000, category: "Electronics", image: "images/headphones.jpg" }
 ];
 
